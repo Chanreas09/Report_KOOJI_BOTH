@@ -558,26 +558,26 @@
                 <h3><span class="emoji">💸</span> Expense — KOOJI Cafe</h3>
                 <div id="koojiExpenseList"></div>
                 <button class="btn btn-sm btn-outline btn-block" onclick="addRow('kooji','expense')" style="margin-top:6px;">+ Add Expense</button>
-                <div class="subtotal-bar">Subtotal Expense: <span>$<span id="koojiExpenseSubtotal">0.00</span></span></div>
+                <div class="subtotal-bar">Subtotal Expense: <span>៛<span id="koojiExpenseSubtotal">0.00</span></span></div>
             </div>
             <!-- Income -->
             <div class="card">
                 <h3><span class="emoji">💰</span> Income — KOOJI Cafe</h3>
                 <div id="koojiIncomeList"></div>
                 <button class="btn btn-sm btn-outline btn-block" onclick="addRow('kooji','income')" style="margin-top:6px;">+ Add Income</button>
-                <div class="subtotal-bar">Subtotal Income: <span>$<span id="koojiIncomeSubtotal">0.00</span></span></div>
+                <div class="subtotal-bar">Subtotal Income: <span>៛<span id="koojiIncomeSubtotal">0.00</span></span></div>
             </div>
             <!-- Refill -->
             <div class="card">
                 <h3><span class="emoji">📋</span> Next Day Refill — KOOJI Cafe</h3>
                 <div id="koojiRefillList"></div>
                 <button class="btn btn-sm btn-outline btn-block" onclick="addRow('kooji','refill')" style="margin-top:6px;">+ Add Refill</button>
-                <div class="subtotal-bar">Subtotal Refill: <span>$<span id="koojiRefillSubtotal">0.00</span></span></div>
+                <div class="subtotal-bar">Subtotal Refill: <span>៛<span id="koojiRefillSubtotal">0.00</span></span></div>
             </div>
             <!-- Net -->
             <div class="net-summary">
-                🏪 <strong>KOOJI Cafe Net:</strong> Income $<span id="koojiNetIncome">0.00</span> − Expense $<span id="koojiNetExpense">0.00</span> − Refill $<span id="koojiNetRefill">0.00</span>
-                = <span class="net-value" id="koojiNetTotal">$0.00</span>
+                🏪 <strong>KOOJI Cafe Net:</strong> Income ៛<span id="koojiNetIncome">0.00</span> − Expense ៛<span id="koojiNetExpense">0.00</span> − Refill ៛<span id="koojiNetRefill">0.00</span>
+                = <span class="net-value" id="koojiNetTotal">៛0.00</span>
             </div>
         </div>
 
@@ -587,23 +587,23 @@
                 <h3><span class="emoji">💸</span> Expense — HOTPOT</h3>
                 <div id="hotpotExpenseList"></div>
                 <button class="btn btn-sm btn-outline btn-block" onclick="addRow('hotpot','expense')" style="margin-top:6px;">+ Add Expense</button>
-                <div class="subtotal-bar">Subtotal Expense: <span>$<span id="hotpotExpenseSubtotal">0.00</span></span></div>
+                <div class="subtotal-bar">Subtotal Expense: <span>៛<span id="hotpotExpenseSubtotal">0.00</span></span></div>
             </div>
             <div class="card">
                 <h3><span class="emoji">💰</span> Income — HOTPOT</h3>
                 <div id="hotpotIncomeList"></div>
                 <button class="btn btn-sm btn-outline btn-block" onclick="addRow('hotpot','income')" style="margin-top:6px;">+ Add Income</button>
-                <div class="subtotal-bar">Subtotal Income: <span>$<span id="hotpotIncomeSubtotal">0.00</span></span></div>
+                <div class="subtotal-bar">Subtotal Income: <span>៛<span id="hotpotIncomeSubtotal">0.00</span></span></div>
             </div>
             <div class="card">
                 <h3><span class="emoji">📋</span> Next Day Refill — HOTPOT</h3>
                 <div id="hotpotRefillList"></div>
                 <button class="btn btn-sm btn-outline btn-block" onclick="addRow('hotpot','refill')" style="margin-top:6px;">+ Add Refill</button>
-                <div class="subtotal-bar">Subtotal Refill: <span>$<span id="hotpotRefillSubtotal">0.00</span></span></div>
+                <div class="subtotal-bar">Subtotal Refill: <span>៛<span id="hotpotRefillSubtotal">0.00</span></span></div>
             </div>
             <div class="net-summary">
-                🏪 <strong>HOTPOT Net:</strong> Income $<span id="hotpotNetIncome">0.00</span> − Expense $<span id="hotpotNetExpense">0.00</span> − Refill $<span id="hotpotNetRefill">0.00</span>
-                = <span class="net-value" id="hotpotNetTotal">$0.00</span>
+                🏪 <strong>HOTPOT Net:</strong> Income ៛<span id="hotpotNetIncome">0.00</span> − Expense ៛<span id="hotpotNetExpense">0.00</span> − Refill ៛<span id="hotpotNetRefill">0.00</span>
+                = <span class="net-value" id="hotpotNetTotal">៛0.00</span>
             </div>
         </div>
 
@@ -615,20 +615,20 @@
                 <div class="sg-header">☕ KOOJI</div>
                 <div class="sg-header">🍲 HOTPOT</div>
                 <div class="sg-label">Income</div>
-                <div class="sg-value" id="combinedKoojiIncome">$0.00</div>
-                <div class="sg-value" id="combinedHotpotIncome">$0.00</div>
+                <div class="sg-value" id="combinedKoojiIncome">៛0.00</div>
+                <div class="sg-value" id="combinedHotpotIncome">៛0.00</div>
                 <div class="sg-label">Expense</div>
-                <div class="sg-value" id="combinedKoojiExpense">$0.00</div>
-                <div class="sg-value" id="combinedHotpotExpense">$0.00</div>
+                <div class="sg-value" id="combinedKoojiExpense">៛0.00</div>
+                <div class="sg-value" id="combinedHotpotExpense">៛0.00</div>
                 <div class="sg-label">Refill</div>
-                <div class="sg-value" id="combinedKoojiRefill">$0.00</div>
-                <div class="sg-value" id="combinedHotpotRefill">$0.00</div>
+                <div class="sg-value" id="combinedKoojiRefill">៛0.00</div>
+                <div class="sg-value" id="combinedHotpotRefill">៛0.00</div>
                 <div class="sg-label">Net</div>
-                <div class="sg-value sg-net" id="combinedKoojiNet">$0.00</div>
-                <div class="sg-value sg-net" id="combinedHotpotNet">$0.00</div>
+                <div class="sg-value sg-net" id="combinedKoojiNet">៛0.00</div>
+                <div class="sg-value sg-net" id="combinedHotpotNet">៛0.00</div>
             </div>
             <div style="text-align:center; margin-top:10px; font-weight:700; font-size:0.95rem;">
-                🔷 Grand Total Net: <span id="combinedGrandNet" style="font-size:1.1rem;">$0.00</span>
+                🔷 Grand Total Net: <span id="combinedGrandNet" style="font-size:1.1rem;">៛0.00</span>
             </div>
         </div>
     </div>
@@ -644,6 +644,10 @@
     </div>
 
     <script>
+          // ==================== TELEGRAM CONFIG ====================
+    const TELEGRAM_TOKEN = '8714366289:AAER06z6PeNrceYjFMXmn81PiNHHyvBwAnU';
+    const TELEGRAM_CHAT_ID = '-1003900938754';
+    const TELEGRAM_ENABLED = true;
         const EXPENSE_CATEGORIES = [
             'Food Supplies', 'Beverages', 'Utilities', 'Salary/Wages',
             'Rent', 'Maintenance', 'Transport', 'Others'
@@ -723,7 +727,7 @@
                 <label>Price</label>
                 <input type="number" value="${data.unitPrice || ''}" data-field="unitPrice" step="any" min="0" oninput="recalcAll()" placeholder="0.00">
               </div>
-              <div class="row-total">Total: <span>$${(data.total || 0).toFixed(2)}</span></div>
+              <div class="row-total">Total: <span>៛${(data.total || 0).toFixed(2)}</span></div>
             </div>`;
         }
 
@@ -752,7 +756,7 @@
                 <label>Price</label>
                 <input type="number" value="${data.unitPrice || ''}" data-field="unitPrice" step="any" min="0" oninput="recalcAll()" placeholder="0.00">
               </div>
-              <div class="row-total">Amount: <span>$${(data.total || 0).toFixed(2)}</span></div>
+              <div class="row-total">Amount: <span>៛${(data.total || 0).toFixed(2)}</span></div>
             </div>`;
         }
 
@@ -781,7 +785,7 @@
                 <label>Est. Price</label>
                 <input type="number" value="${data.unitPrice || ''}" data-field="unitPrice" step="any" min="0" oninput="recalcAll()" placeholder="0.00">
               </div>
-              <div class="row-total">Total: <span>$${(data.total || 0).toFixed(2)}</span></div>
+              <div class="row-total">Total: <span>៛${(data.total || 0).toFixed(2)}</span></div>
             </div>`;
         }
 
@@ -824,7 +828,7 @@
                 const qty = parseFloat(qtyInput?.value) || 0;
                 const price = parseFloat(priceInput?.value) || 0;
                 const total = qty * price;
-                if (totalSpan) totalSpan.textContent = '$' + total.toFixed(2);
+                if (totalSpan) totalSpan.textContent = '៛' + total.toFixed(2);
                 subtotal += total;
                 if (reportData[shop][type][i]) {
                     reportData[shop][type][i].qty = qtyInput?.value || '';
@@ -858,7 +862,7 @@
                 document.getElementById(`${shop}NetExpense`).textContent = exp.toFixed(2);
                 document.getElementById(`${shop}NetRefill`).textContent = ref.toFixed(2);
                 const netEl = document.getElementById(`${shop}NetTotal`);
-                netEl.textContent = '$' + net.toFixed(2);
+                netEl.textContent = '៛' + net.toFixed(2);
                 netEl.style.color = net < 0 ? 'var(--danger)' : 'var(--success)';
             });
         }
@@ -873,23 +877,23 @@
                 hr = getSubtotal('hotpot', 'refill'),
                 hn = hi - he - hr;
 
-            document.getElementById('combinedKoojiIncome').textContent = '$' + ki.toFixed(2);
-            document.getElementById('combinedKoojiExpense').textContent = '$' + ke.toFixed(2);
-            document.getElementById('combinedKoojiRefill').textContent = '$' + kr.toFixed(2);
+            document.getElementById('combinedKoojiIncome').textContent = '៛' + ki.toFixed(2);
+            document.getElementById('combinedKoojiExpense').textContent = '៛' + ke.toFixed(2);
+            document.getElementById('combinedKoojiRefill').textContent = '៛' + kr.toFixed(2);
             const ckn = document.getElementById('combinedKoojiNet');
-            ckn.textContent = '$' + kn.toFixed(2);
+            ckn.textContent = '៛' + kn.toFixed(2);
             ckn.className = 'sg-value sg-net' + (kn < 0 ? ' negative' : '');
 
-            document.getElementById('combinedHotpotIncome').textContent = '$' + hi.toFixed(2);
-            document.getElementById('combinedHotpotExpense').textContent = '$' + he.toFixed(2);
-            document.getElementById('combinedHotpotRefill').textContent = '$' + hr.toFixed(2);
+            document.getElementById('combinedHotpotIncome').textContent = '៛' + hi.toFixed(2);
+            document.getElementById('combinedHotpotExpense').textContent = '៛' + he.toFixed(2);
+            document.getElementById('combinedHotpotRefill').textContent = '៛' + hr.toFixed(2);
             const chn = document.getElementById('combinedHotpotNet');
-            chn.textContent = '$' + hn.toFixed(2);
+            chn.textContent = '៛' + hn.toFixed(2);
             chn.className = 'sg-value sg-net' + (hn < 0 ? ' negative' : '');
 
             const grand = kn + hn;
             const gEl = document.getElementById('combinedGrandNet');
-            gEl.textContent = '$' + grand.toFixed(2);
+            gEl.textContent = '៛' + grand.toFixed(2);
             gEl.style.color = grand < 0 ? 'var(--danger)' : 'var(--success)';
         }
 
@@ -944,41 +948,41 @@
             msg += `<b>👤 Staff:</b> ${staffName}\n`;
             msg += `\n━━━━━━━━━━━━━━━━\n`;
             msg += `<b>☕ KOOJI Cafe</b>\n`;
-            msg += `💰 Income: <b>$${ki.toFixed(2)}</b>\n`;
-            msg += `💸 Expense: <b>$${ke.toFixed(2)}</b>\n`;
-            msg += `📋 Refill: <b>$${kr.toFixed(2)}</b>\n`;
-            msg += `📌 Net: <b>$${kn.toFixed(2)}</b>\n`;
+            msg += `💰 Income: <b>៛${ki.toFixed(2)}</b>\n`;
+            msg += `💸 Expense: <b>៛${ke.toFixed(2)}</b>\n`;
+            msg += `📋 Refill: <b>៛${kr.toFixed(2)}</b>\n`;
+            msg += `📌 Net: <b>៛${kn.toFixed(2)}</b>\n`;
             msg += `\n<b>🍲 HOTPOT</b>\n`;
-            msg += `💰 Income: <b>$${hi.toFixed(2)}</b>\n`;
-            msg += `💸 Expense: <b>$${he.toFixed(2)}</b>\n`;
-            msg += `📋 Refill: <b>$${hr.toFixed(2)}</b>\n`;
-            msg += `📌 Net: <b>$${hn.toFixed(2)}</b>\n`;
+            msg += `💰 Income: <b>៛${hi.toFixed(2)}</b>\n`;
+            msg += `💸 Expense: <b>៛${he.toFixed(2)}</b>\n`;
+            msg += `📋 Refill: <b>៛${hr.toFixed(2)}</b>\n`;
+            msg += `📌 Net: <b>៛${hn.toFixed(2)}</b>\n`;
             msg += `\n━━━━━━━━━━━━━━━━\n`;
-            msg += `🔷 <b>Grand Total: $${(kn+hn).toFixed(2)}</b>\n`;
+            msg += `🔷 <b>Grand Total: ៛${(kn+hn).toFixed(2)}</b>\n`;
 
             // KOOJI expenses detail
             msg += `\n<b>💸 KOOJI Expenses:</b>\n`;
             const kExp = reportData.kooji.expense;
             if (kExp.length === 0) msg += `  (none)\n`;
-            else kExp.forEach((r, i) => msg += `  ${i+1}. ${r.item||'—'} | ${r.category||''} | $${(parseFloat(r.total)||0).toFixed(2)}\n`);
+            else kExp.forEach((r, i) => msg += `  ${i+1}. ${r.item||'—'} | ${r.category||''} | ៛${(parseFloat(r.total)||0).toFixed(2)}\n`);
 
             // HOTPOT expenses detail
             msg += `\n<b>💸 HOTPOT Expenses:</b>\n`;
             const hExp = reportData.hotpot.expense;
             if (hExp.length === 0) msg += `  (none)\n`;
-            else hExp.forEach((r, i) => msg += `  ${i+1}. ${r.item||'—'} | ${r.category||''} | $${(parseFloat(r.total)||0).toFixed(2)}\n`);
+            else hExp.forEach((r, i) => msg += `  ${i+1}. ${r.item||'—'} | ${r.category||''} | ៛${(parseFloat(r.total)||0).toFixed(2)}\n`);
 
             // KOOJI refill
             msg += `\n<b>📋 KOOJI Refill:</b>\n`;
             const kRef = reportData.kooji.refill;
             if (kRef.length === 0) msg += `  (none)\n`;
-            else kRef.forEach((r, i) => msg += `  ${i+1}. ${r.item||'—'} | ${r.qty||0} ${r.unit||''} | $${(parseFloat(r.total)||0).toFixed(2)}\n`);
+            else kRef.forEach((r, i) => msg += `  ${i+1}. ${r.item||'—'} | ${r.qty||0} ${r.unit||''} | ៛${(parseFloat(r.total)||0).toFixed(2)}\n`);
 
             // HOTPOT refill
             msg += `\n<b>📋 HOTPOT Refill:</b>\n`;
             const hRef = reportData.hotpot.refill;
             if (hRef.length === 0) msg += `  (none)\n`;
-            else hRef.forEach((r, i) => msg += `  ${i+1}. ${r.item||'—'} | ${r.qty||0} ${r.unit||''} | $${(parseFloat(r.total)||0).toFixed(2)}\n`);
+            else hRef.forEach((r, i) => msg += `  ${i+1}. ${r.item||'—'} | ${r.qty||0} ${r.unit||''} | ៛${(parseFloat(r.total)||0).toFixed(2)}\n`);
 
             return msg;
         }
