@@ -2,49 +2,53 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Expense & Income Report - KOOJI Cafe & HOTPOT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Daily Report - KOOJI Cafe & HOTPOT</title>
     <style>
         :root {
             --primary: #1a3c34;
             --primary-light: #2a5c4f;
             --accent: #d4a853;
-            --bg: #f8f6f0;
+            --bg: #f5f3ed;
             --card-bg: #ffffff;
-            --border: #d0cdc4;
-            --text: #2c2c2c;
-            --text-light: #5c5c5c;
-            --danger: #b8433d;
-            --success: #3d7a5c;
-            --shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-            --radius: 10px;
-            --transition: 0.2s ease;
+            --border: #ddd9cf;
+            --text: #1e1e1e;
+            --text-light: #666;
+            --danger: #c0392b;
+            --success: #2d7a4f;
+            --shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+            --radius: 12px;
+            --radius-sm: 8px;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.5;
+            line-height: 1.45;
             min-height: 100vh;
+            font-size: 15px;
+            padding-bottom: 90px;
         }
 
         /* ============ LOGIN SCREEN ============ */
         .login-overlay {
             position: fixed;
             inset: 0;
-            background: linear-gradient(160deg, #1a3c34 0%, #0f2a24 40%, #1a3c34 100%);
+            background: linear-gradient(170deg, #1a3c34 0%, #0f2a24 35%, #1a3c34 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 1000;
-            transition: opacity 0.4s ease, visibility 0.4s ease;
+            padding: 20px;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
         }
         .login-overlay.hidden {
             opacity: 0;
@@ -53,148 +57,143 @@
         }
         .login-card {
             background: #fff;
-            border-radius: 16px;
-            padding: 40px 36px;
-            width: 420px;
-            max-width: 90vw;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 32px 22px;
+            width: 100%;
+            max-width: 380px;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
             text-align: center;
         }
         .login-card .logo-icon {
-            font-size: 56px;
-            margin-bottom: 8px;
+            font-size: 48px;
+            margin-bottom: 6px;
         }
         .login-card h1 {
-            font-size: 1.7rem;
+            font-size: 1.5rem;
             color: var(--primary);
-            margin-bottom: 4px;
-            letter-spacing: -0.3px;
+            margin-bottom: 2px;
+            letter-spacing: -0.2px;
         }
         .login-card .subtitle {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-light);
-            margin-bottom: 28px;
+            margin-bottom: 24px;
         }
         .login-card label {
             display: block;
             text-align: left;
             font-weight: 600;
-            font-size: 0.85rem;
-            margin-bottom: 5px;
+            font-size: 0.8rem;
+            margin-bottom: 4px;
             color: var(--primary);
             text-transform: uppercase;
-            letter-spacing: 0.4px;
+            letter-spacing: 0.5px;
         }
         .login-card input {
             width: 100%;
-            padding: 12px 14px;
+            padding: 13px 14px;
             border: 2px solid var(--border);
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 1rem;
-            margin-bottom: 18px;
-            transition: var(--transition);
+            margin-bottom: 16px;
             font-family: inherit;
+            background: #fafaf7;
         }
         .login-card input:focus {
             outline: none;
             border-color: var(--primary-light);
-            box-shadow: 0 0 0 3px rgba(26, 60, 52, 0.08);
+            box-shadow: 0 0 0 3px rgba(26, 60, 52, 0.07);
+            background: #fff;
         }
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-            padding: 11px 22px;
+            gap: 5px;
+            padding: 12px 18px;
             border: none;
-            border-radius: 8px;
-            font-size: 0.95rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
-            transition: var(--transition);
             font-family: inherit;
             letter-spacing: 0.2px;
+            transition: 0.15s ease;
+            min-height: 44px;
         }
         .btn-primary {
             background: var(--primary);
             color: #fff;
             width: 100%;
             font-size: 1rem;
-            padding: 13px;
+            padding: 14px;
         }
-        .btn-primary:hover {
-            background: var(--primary-light);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 14px rgba(26, 60, 52, 0.3);
+        .btn-primary:active {
+            background: #0f2a24;
+            transform: scale(0.98);
         }
         .btn-sm {
-            padding: 7px 14px;
-            font-size: 0.8rem;
-            border-radius: 6px;
+            padding: 10px 16px;
+            font-size: 0.82rem;
+            border-radius: 8px;
+            min-height: 40px;
         }
         .btn-outline {
             background: #fff;
             border: 2px solid var(--primary);
             color: var(--primary);
         }
-        .btn-outline:hover {
-            background: #f0f5f3;
+        .btn-outline:active {
+            background: #eef3f1;
         }
         .btn-danger {
             background: #fff;
             border: 2px solid var(--danger);
             color: var(--danger);
         }
-        .btn-danger:hover {
+        .btn-danger:active {
             background: #fef5f5;
         }
         .btn-accent {
             background: var(--accent);
             color: #1a1a1a;
         }
-        .btn-accent:hover {
-            background: #c99a3e;
+        .btn-accent:active {
+            background: #c49a3a;
+        }
+        .btn-block {
+            width: 100%;
+            justify-content: center;
         }
 
         /* ============ MAIN APP ============ */
         .app-container {
-            max-width: 1100px;
+            max-width: 600px;
             margin: 0 auto;
-            padding: 20px 16px 40px;
+            padding: 10px 10px 20px;
         }
         .app-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 12px;
             background: var(--card-bg);
             border-radius: var(--radius);
-            padding: 18px 24px;
-            margin-bottom: 20px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
             box-shadow: var(--shadow);
             border: 1px solid var(--border);
+            text-align: center;
         }
         .app-header .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .app-header .brand .icon {
-            font-size: 34px;
-        }
-        .app-header .brand h2 {
-            font-size: 1.2rem;
+            font-size: 1rem;
+            font-weight: 700;
             color: var(--primary);
-            letter-spacing: -0.2px;
+            margin-bottom: 4px;
         }
         .app-header .meta {
-            display: flex;
-            gap: 16px;
-            align-items: center;
-            flex-wrap: wrap;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
         }
         .app-header .meta span {
             font-weight: 600;
@@ -206,302 +205,341 @@
             display: flex;
             gap: 0;
             background: var(--card-bg);
-            border-radius: var(--radius) var(--radius) 0 0;
+            border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow);
             border: 1px solid var(--border);
-            border-bottom: none;
+            margin-bottom: 10px;
+            position: sticky;
+            top: 10px;
+            z-index: 50;
         }
         .tab-btn {
             flex: 1;
-            padding: 14px 20px;
-            background: #f2f0ea;
+            padding: 13px 10px;
+            background: #f5f3ed;
             border: none;
             cursor: pointer;
             font-weight: 700;
-            font-size: 1rem;
-            letter-spacing: 0.3px;
+            font-size: 0.9rem;
             color: var(--text-light);
-            transition: var(--transition);
             font-family: inherit;
-            position: relative;
+            transition: 0.15s ease;
+            min-height: 46px;
         }
         .tab-btn.active {
             background: #fff;
             color: var(--primary);
             box-shadow: inset 0 -3px 0 var(--accent);
         }
-        .tab-btn:hover {
-            background: #fafaf7;
-        }
         .tab-content {
             display: none;
-            background: var(--card-bg);
-            border-radius: 0 0 var(--radius) var(--radius);
-            padding: 24px;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-            border-top: none;
-            margin-bottom: 20px;
         }
         .tab-content.active {
             display: block;
         }
 
-        /* Sections */
-        .section {
-            margin-bottom: 28px;
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 16px;
+            margin-bottom: 10px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
         }
-        .section h3 {
-            font-size: 1.05rem;
+        .card h3 {
+            font-size: 0.95rem;
             color: var(--primary);
             margin-bottom: 10px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             border-bottom: 2px solid #eee;
             padding-bottom: 8px;
-            letter-spacing: -0.1px;
         }
-        .section h3 .emoji {
-            font-size: 1.3rem;
+        .card h3 .emoji {
+            font-size: 1.2rem;
         }
 
-        /* Tables */
-        .table-wrapper {
-            overflow-x: auto;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.88rem;
-            min-width: 700px;
-        }
-        table th {
-            background: #f7f5ef;
-            color: var(--primary);
-            font-weight: 700;
-            padding: 10px 8px;
-            text-align: left;
-            font-size: 0.78rem;
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
-            white-space: nowrap;
-            border-bottom: 2px solid var(--border);
-        }
-        table td {
-            padding: 8px;
-            border-bottom: 1px solid #eee;
-            vertical-align: middle;
-        }
-        table tbody tr:hover {
-            background: #fdfcf8;
-        }
-        table input,
-        table select {
-            width: 100%;
-            padding: 7px 8px;
-            border: 1px solid var(--border);
-            border-radius: 5px;
-            font-size: 0.85rem;
-            font-family: inherit;
-            transition: var(--transition);
+        /* Mobile-friendly row items */
+        .row-item {
             background: #fafaf7;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 12px;
+            margin-bottom: 8px;
+            position: relative;
         }
-        table input:focus,
-        table select:focus {
+        .row-item .row-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .row-item .row-number {
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: var(--text-light);
+            background: #eee;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+        .row-item .delete-btn {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            color: var(--danger);
+            cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 6px;
+            line-height: 1;
+            min-height: 36px;
+            min-width: 36px;
+        }
+        .row-item .delete-btn:active {
+            background: #fdecea;
+        }
+        .row-item .field-group {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 6px;
+            align-items: center;
+        }
+        .row-item .field-group:last-child {
+            margin-bottom: 0;
+        }
+        .row-item label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            min-width: 45px;
+            flex-shrink: 0;
+        }
+        .row-item input,
+        .row-item select {
+            flex: 1;
+            padding: 9px 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            background: #fff;
+            min-width: 0;
+        }
+        .row-item input:focus,
+        .row-item select:focus {
             outline: none;
             border-color: var(--primary-light);
             box-shadow: 0 0 0 2px rgba(26, 60, 52, 0.06);
-            background: #fff;
         }
-        table input[type="number"] {
+        .row-item input[type="number"] {
             text-align: right;
         }
-        .total-cell {
+        .row-item .row-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+            padding-top: 6px;
+            border-top: 1px dashed #ddd;
             font-weight: 700;
             color: var(--primary);
-            text-align: right;
-            background: #fdfcf8;
-        }
-        .delete-row-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-            color: #c0392b;
-            padding: 4px 8px;
-            border-radius: 4px;
-            transition: var(--transition);
-        }
-        .delete-row-btn:hover {
-            background: #fdecea;
-        }
-
-        .add-row-btn {
-            margin-top: 8px;
-        }
-
-        /* Summary rows */
-        .subtotal-row td {
-            font-weight: 700;
-            background: #f9f8f3;
-            border-top: 2px solid var(--border);
             font-size: 0.9rem;
+        }
+        .row-item .two-col {
+            display: flex;
+            gap: 6px;
+        }
+        .row-item .two-col .field-group {
+            flex: 1;
+        }
+
+        .subtotal-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--primary);
+            padding: 8px 0;
+            margin-top: 4px;
+        }
+
+        /* Net summary card */
+        .net-summary {
+            background: #f9f8f3;
+            border-radius: var(--radius-sm);
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+        .net-summary .net-value {
+            font-size: 1.2rem;
+            font-weight: 700;
         }
 
         /* Combined Summary */
         .combined-summary {
             background: var(--card-bg);
             border-radius: var(--radius);
-            padding: 20px 24px;
+            padding: 16px;
             box-shadow: var(--shadow);
             border: 1px solid var(--border);
+            margin-bottom: 10px;
         }
         .combined-summary h3 {
-            margin-bottom: 14px;
+            margin-bottom: 10px;
             color: var(--primary);
-            font-size: 1.1rem;
-            letter-spacing: -0.1px;
+            font-size: 0.95rem;
         }
-        .combined-summary table {
-            min-width: 500px;
-        }
-        .combined-summary th {
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 6px;
             text-align: center;
+            font-size: 0.78rem;
         }
-        .combined-summary td {
-            text-align: center;
-            font-weight: 600;
-        }
-        .combined-summary .net-row td {
-            font-size: 1rem;
+        .summary-grid .sg-header {
             font-weight: 700;
-            color: var(--success);
-            background: #f4faf6;
-            border-top: 2px solid var(--border);
+            color: var(--text-light);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
         }
-        .combined-summary .net-row td.negative {
+        .summary-grid .sg-label {
+            font-weight: 600;
+            text-align: left;
+            padding: 6px 0;
+        }
+        .summary-grid .sg-value {
+            font-weight: 600;
+            padding: 6px 0;
+            background: #fafaf7;
+            border-radius: 4px;
+        }
+        .summary-grid .sg-net {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--success);
+        }
+        .summary-grid .sg-net.negative {
             color: var(--danger);
-            background: #fef5f5;
         }
 
-        /* Action bar */
-        .action-bar {
+        /* Bottom action bar */
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border-top: 2px solid var(--border);
             display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-            justify-content: center;
+            gap: 4px;
+            padding: 8px 6px;
+            z-index: 100;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+        }
+        .bottom-bar .btn {
+            flex-shrink: 0;
+            font-size: 0.75rem;
+            padding: 8px 12px;
+            min-height: 38px;
+            white-space: nowrap;
         }
 
         /* Toast */
         .toast {
             position: fixed;
-            bottom: 30px;
+            bottom: 90px;
             left: 50%;
             transform: translateX(-50%);
             background: #1a3c34;
             color: #fff;
-            padding: 12px 24px;
-            border-radius: 30px;
+            padding: 11px 22px;
+            border-radius: 24px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             z-index: 2000;
             opacity: 0;
             transition: opacity 0.3s ease;
             pointer-events: none;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
         }
         .toast.show {
             opacity: 1;
         }
 
-        /* Print styles */
+        @media (min-width: 420px) {
+            .row-item .two-col .field-group {
+                flex: 1;
+            }
+            .summary-grid {
+                font-size: 0.85rem;
+            }
+        }
+
         @media print {
             body {
                 background: #fff;
+                padding-bottom: 0;
             }
-            .login-overlay,
-            .action-bar,
+            .bottom-bar,
             .add-row-btn,
-            .delete-row-btn,
-            .btn,
+            .delete-btn,
             .tabs {
                 display: none !important;
             }
             .tab-content {
                 display: block !important;
-                border: none;
+            }
+            .card {
                 box-shadow: none;
+                border: 1px solid #ccc;
                 break-inside: avoid;
-                margin-bottom: 12px;
-                padding: 8px 0;
             }
             .app-header {
                 box-shadow: none;
                 border: none;
-                padding: 8px 0;
             }
             .combined-summary {
                 box-shadow: none;
                 border: 1px solid #ccc;
-            }
-            table {
-                font-size: 0.75rem;
-            }
-            .app-container {
-                max-width: 100%;
-                padding: 0;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .app-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .tabs {
-                flex-direction: column;
-            }
-            .tab-btn {
-                text-align: center;
-            }
-            table {
-                min-width: 550px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- ==================== LOGIN SCREEN ==================== -->
+    <!-- LOGIN SCREEN -->
     <div class="login-overlay" id="loginOverlay">
         <div class="login-card">
             <div class="logo-icon">📊</div>
             <h1>Daily Report</h1>
             <p class="subtitle">KOOJI Cafe &amp; HOTPOT</p>
             <label for="staffNameInput">👤 Staff Name</label>
-            <input type="text" id="staffNameInput" placeholder="Enter your name" autocomplete="off">
+            <input type="text" id="staffNameInput" placeholder="Enter your name" autocomplete="off" inputmode="text">
             <label for="reportDateInput">📅 Report Date</label>
             <input type="date" id="reportDateInput">
             <button class="btn btn-primary" onclick="login()">📝 Open Report</button>
         </div>
     </div>
 
-    <!-- ==================== TOAST ==================== -->
+    <!-- TOAST -->
     <div class="toast" id="toast"></div>
 
-    <!-- ==================== MAIN APP ==================== -->
+    <!-- MAIN APP -->
     <div class="app-container" id="appContainer" style="display:none;">
         <!-- Header -->
         <div class="app-header">
-            <div class="brand">
-                <span class="icon">☕🍲</span>
-                <h2>KOOJI Cafe & HOTPOT — Daily Report</h2>
-            </div>
+            <div class="brand">☕🍲 KOOJI Cafe & HOTPOT — Daily Report</div>
             <div class="meta">
                 📅 <span id="displayDate">—</span> &nbsp;|&nbsp; 👤 <span id="displayStaff">—</span>
             </div>
@@ -515,216 +553,97 @@
 
         <!-- KOOJI Tab -->
         <div class="tab-content active" id="tab-kooji">
-            <div class="section" id="kooji-expense-section">
-                <h3><span class="emoji">💸</span> Expense Report — KOOJI Cafe</h3>
-                <div class="table-wrapper">
-                    <table id="koojiExpenseTable">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Category</th>
-                                <th>Item Name</th>
-                                <th>Unit</th>
-                                <th>Qty</th>
-                                <th>Unit Price</th>
-                                <th>Total</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody id="koojiExpenseBody"></tbody>
-                    </table>
-                </div>
-                <button class="btn btn-sm btn-outline add-row-btn" onclick="addRow('kooji', 'expense')">+ Add Expense Row</button>
-                <p style="text-align:right; font-weight:700; margin-top:6px;">Subtotal Expense: $<span id="koojiExpenseSubtotal">0.00</span></p>
+            <!-- Expense -->
+            <div class="card">
+                <h3><span class="emoji">💸</span> Expense — KOOJI Cafe</h3>
+                <div id="koojiExpenseList"></div>
+                <button class="btn btn-sm btn-outline btn-block" onclick="addRow('kooji','expense')" style="margin-top:6px;">+ Add Expense</button>
+                <div class="subtotal-bar">Subtotal Expense: <span>$<span id="koojiExpenseSubtotal">0.00</span></span></div>
             </div>
-
-            <div class="section" id="kooji-income-section">
-                <h3><span class="emoji">💰</span> Income Report — KOOJI Cafe</h3>
-                <div class="table-wrapper">
-                    <table id="koojiIncomeTable">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Description</th>
-                                <th>Unit</th>
-                                <th>Qty</th>
-                                <th>Unit Price</th>
-                                <th>Amount</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody id="koojiIncomeBody"></tbody>
-                    </table>
-                </div>
-                <button class="btn btn-sm btn-outline add-row-btn" onclick="addRow('kooji', 'income')">+ Add Income Row</button>
-                <p style="text-align:right; font-weight:700; margin-top:6px;">Subtotal Income: $<span id="koojiIncomeSubtotal">0.00</span></p>
+            <!-- Income -->
+            <div class="card">
+                <h3><span class="emoji">💰</span> Income — KOOJI Cafe</h3>
+                <div id="koojiIncomeList"></div>
+                <button class="btn btn-sm btn-outline btn-block" onclick="addRow('kooji','income')" style="margin-top:6px;">+ Add Income</button>
+                <div class="subtotal-bar">Subtotal Income: <span>$<span id="koojiIncomeSubtotal">0.00</span></span></div>
             </div>
-
-            <div class="section" id="kooji-refill-section">
-                <h3><span class="emoji">📋</span> Next Day Refill / Shopping List — KOOJI Cafe</h3>
-                <div class="table-wrapper">
-                    <table id="koojiRefillTable">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Item Name</th>
-                                <th>Unit</th>
-                                <th>Qty to Buy</th>
-                                <th>Est. Price</th>
-                                <th>Total</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody id="koojiRefillBody"></tbody>
-                    </table>
-                </div>
-                <button class="btn btn-sm btn-outline add-row-btn" onclick="addRow('kooji', 'refill')">+ Add Refill Row</button>
-                <p style="text-align:right; font-weight:700; margin-top:6px;">Subtotal Refill Budget: $<span id="koojiRefillSubtotal">0.00</span></p>
+            <!-- Refill -->
+            <div class="card">
+                <h3><span class="emoji">📋</span> Next Day Refill — KOOJI Cafe</h3>
+                <div id="koojiRefillList"></div>
+                <button class="btn btn-sm btn-outline btn-block" onclick="addRow('kooji','refill')" style="margin-top:6px;">+ Add Refill</button>
+                <div class="subtotal-bar">Subtotal Refill: <span>$<span id="koojiRefillSubtotal">0.00</span></span></div>
             </div>
-
-            <div style="background:#f9f8f3; border-radius:8px; padding:14px 18px; border:1px solid var(--border);">
-                <strong>🏪 KOOJI Cafe Net:</strong>
-                Income $<span id="koojiNetIncome">0.00</span> − Expense $<span id="koojiNetExpense">0.00</span> − Refill $<span id="koojiNetRefill">0.00</span>
-                = <strong style="font-size:1.1rem;">$<span id="koojiNetTotal">0.00</span></strong>
+            <!-- Net -->
+            <div class="net-summary">
+                🏪 <strong>KOOJI Cafe Net:</strong> Income $<span id="koojiNetIncome">0.00</span> − Expense $<span id="koojiNetExpense">0.00</span> − Refill $<span id="koojiNetRefill">0.00</span>
+                = <span class="net-value" id="koojiNetTotal">$0.00</span>
             </div>
         </div>
 
         <!-- HOTPOT Tab -->
         <div class="tab-content" id="tab-hotpot">
-            <div class="section" id="hotpot-expense-section">
-                <h3><span class="emoji">💸</span> Expense Report — HOTPOT</h3>
-                <div class="table-wrapper">
-                    <table id="hotpotExpenseTable">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Category</th>
-                                <th>Item Name</th>
-                                <th>Unit</th>
-                                <th>Qty</th>
-                                <th>Unit Price</th>
-                                <th>Total</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody id="hotpotExpenseBody"></tbody>
-                    </table>
-                </div>
-                <button class="btn btn-sm btn-outline add-row-btn" onclick="addRow('hotpot', 'expense')">+ Add Expense Row</button>
-                <p style="text-align:right; font-weight:700; margin-top:6px;">Subtotal Expense: $<span id="hotpotExpenseSubtotal">0.00</span></p>
+            <div class="card">
+                <h3><span class="emoji">💸</span> Expense — HOTPOT</h3>
+                <div id="hotpotExpenseList"></div>
+                <button class="btn btn-sm btn-outline btn-block" onclick="addRow('hotpot','expense')" style="margin-top:6px;">+ Add Expense</button>
+                <div class="subtotal-bar">Subtotal Expense: <span>$<span id="hotpotExpenseSubtotal">0.00</span></span></div>
             </div>
-
-            <div class="section" id="hotpot-income-section">
-                <h3><span class="emoji">💰</span> Income Report — HOTPOT</h3>
-                <div class="table-wrapper">
-                    <table id="hotpotIncomeTable">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Description</th>
-                                <th>Unit</th>
-                                <th>Qty</th>
-                                <th>Unit Price</th>
-                                <th>Amount</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody id="hotpotIncomeBody"></tbody>
-                    </table>
-                </div>
-                <button class="btn btn-sm btn-outline add-row-btn" onclick="addRow('hotpot', 'income')">+ Add Income Row</button>
-                <p style="text-align:right; font-weight:700; margin-top:6px;">Subtotal Income: $<span id="hotpotIncomeSubtotal">0.00</span></p>
+            <div class="card">
+                <h3><span class="emoji">💰</span> Income — HOTPOT</h3>
+                <div id="hotpotIncomeList"></div>
+                <button class="btn btn-sm btn-outline btn-block" onclick="addRow('hotpot','income')" style="margin-top:6px;">+ Add Income</button>
+                <div class="subtotal-bar">Subtotal Income: <span>$<span id="hotpotIncomeSubtotal">0.00</span></span></div>
             </div>
-
-            <div class="section" id="hotpot-refill-section">
-                <h3><span class="emoji">📋</span> Next Day Refill / Shopping List — HOTPOT</h3>
-                <div class="table-wrapper">
-                    <table id="hotpotRefillTable">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Item Name</th>
-                                <th>Unit</th>
-                                <th>Qty to Buy</th>
-                                <th>Est. Price</th>
-                                <th>Total</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody id="hotpotRefillBody"></tbody>
-                    </table>
-                </div>
-                <button class="btn btn-sm btn-outline add-row-btn" onclick="addRow('hotpot', 'refill')">+ Add Refill Row</button>
-                <p style="text-align:right; font-weight:700; margin-top:6px;">Subtotal Refill Budget: $<span id="hotpotRefillSubtotal">0.00</span></p>
+            <div class="card">
+                <h3><span class="emoji">📋</span> Next Day Refill — HOTPOT</h3>
+                <div id="hotpotRefillList"></div>
+                <button class="btn btn-sm btn-outline btn-block" onclick="addRow('hotpot','refill')" style="margin-top:6px;">+ Add Refill</button>
+                <div class="subtotal-bar">Subtotal Refill: <span>$<span id="hotpotRefillSubtotal">0.00</span></span></div>
             </div>
-
-            <div style="background:#f9f8f3; border-radius:8px; padding:14px 18px; border:1px solid var(--border);">
-                <strong>🏪 HOTPOT Net:</strong>
-                Income $<span id="hotpotNetIncome">0.00</span> − Expense $<span id="hotpotNetExpense">0.00</span> − Refill $<span id="hotpotNetRefill">0.00</span>
-                = <strong style="font-size:1.1rem;">$<span id="hotpotNetTotal">0.00</span></strong>
+            <div class="net-summary">
+                🏪 <strong>HOTPOT Net:</strong> Income $<span id="hotpotNetIncome">0.00</span> − Expense $<span id="hotpotNetExpense">0.00</span> − Refill $<span id="hotpotNetRefill">0.00</span>
+                = <span class="net-value" id="hotpotNetTotal">$0.00</span>
             </div>
         </div>
 
         <!-- Combined Summary -->
         <div class="combined-summary">
             <h3>📊 Overall Combined Summary</h3>
-            <div class="table-wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>☕ KOOJI Cafe</th>
-                            <th>🍲 HOTPOT</th>
-                            <th>🔷 Grand Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Income</strong></td>
-                            <td id="combinedKoojiIncome">$0.00</td>
-                            <td id="combinedHotpotIncome">$0.00</td>
-                            <td id="combinedTotalIncome">$0.00</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Expense</strong></td>
-                            <td id="combinedKoojiExpense">$0.00</td>
-                            <td id="combinedHotpotExpense">$0.00</td>
-                            <td id="combinedTotalExpense">$0.00</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Refill Budget</strong></td>
-                            <td id="combinedKoojiRefill">$0.00</td>
-                            <td id="combinedHotpotRefill">$0.00</td>
-                            <td id="combinedTotalRefill">$0.00</td>
-                        </tr>
-                        <tr class="net-row">
-                            <td><strong>Net</strong></td>
-                            <td id="combinedKoojiNet">$0.00</td>
-                            <td id="combinedHotpotNet">$0.00</td>
-                            <td id="combinedGrandNet">$0.00</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="summary-grid">
+                <div class="sg-header"></div>
+                <div class="sg-header">☕ KOOJI</div>
+                <div class="sg-header">🍲 HOTPOT</div>
+                <div class="sg-label">Income</div>
+                <div class="sg-value" id="combinedKoojiIncome">$0.00</div>
+                <div class="sg-value" id="combinedHotpotIncome">$0.00</div>
+                <div class="sg-label">Expense</div>
+                <div class="sg-value" id="combinedKoojiExpense">$0.00</div>
+                <div class="sg-value" id="combinedHotpotExpense">$0.00</div>
+                <div class="sg-label">Refill</div>
+                <div class="sg-value" id="combinedKoojiRefill">$0.00</div>
+                <div class="sg-value" id="combinedHotpotRefill">$0.00</div>
+                <div class="sg-label">Net</div>
+                <div class="sg-value sg-net" id="combinedKoojiNet">$0.00</div>
+                <div class="sg-value sg-net" id="combinedHotpotNet">$0.00</div>
             </div>
-        </div>
-
-        <!-- Action Buttons -->
-        <div class="action-bar">
-            <button class="btn btn-accent" onclick="saveReport()">💾 Save Report</button>
-            <button class="btn btn-outline" onclick="loadReport()">📂 Load Previous</button>
-            <button class="btn btn-sm" style="background:#0088cc; color:#fff; border:none;" onclick="sendReportToTelegram()">📤 Send</button>
-            <button class="btn btn-outline" onclick="printReport()">🖨️ Print Report</button>
-            <button class="btn btn-danger" onclick="newReport()">🗑️ New Report</button>
-            <button class="btn btn-sm btn-outline" onclick="logout()">🚪 Logout</button>
+            <div style="text-align:center; margin-top:10px; font-weight:700; font-size:0.95rem;">
+                🔷 Grand Total Net: <span id="combinedGrandNet" style="font-size:1.1rem;">$0.00</span>
+            </div>
         </div>
     </div>
 
+    <!-- Bottom Action Bar -->
+    <div class="bottom-bar" id="bottomBar" style="display:none;">
+        <button class="btn btn-accent" onclick="saveReport()">💾 Save</button>
+        <button class="btn btn-sm" style="background:#0088cc; color:#fff; border:none;" onclick="sendReportToTelegram()">📤 Send</button>
+        <button class="btn btn-outline" onclick="loadReport()">📂 Load</button>
+        <button class="btn btn-outline" onclick="printReport()">🖨️ Print</button>
+        <button class="btn btn-danger" onclick="newReport()">🗑️ New</button>
+        <button class="btn btn-sm btn-outline" onclick="logout()">🚪 Logout</button>
+    </div>
+
     <script>
-        // ==================== TELEGRAM CONFIG ====================
-        const TELEGRAM_TOKEN = '8714366289:AAER06z6PeNrceYjFMXmn81PiNHHyvBwAnU';
-        const TELEGRAM_CHAT_ID = '-5205611784';
-        const TELEGRAM_ENABLED = true; // Set to false to disable Telegram sending
-        // ==================== STATE ====================
         const EXPENSE_CATEGORIES = [
             'Food Supplies', 'Beverages', 'Utilities', 'Salary/Wages',
             'Rent', 'Maintenance', 'Transport', 'Others'
@@ -733,414 +652,381 @@
         let currentTab = 'kooji';
         let staffName = '';
         let reportDate = '';
-
-        // Data structure: { kooji: { expense:[], income:[], refill:[] }, hotpot: { ... } }
         let reportData = {
             kooji: { expense: [], income: [], refill: [] },
             hotpot: { expense: [], income: [], refill: [] }
         };
 
-        // ==================== DOM REFS ====================
-        function getBody(shop, type) {
-            const idMap = {
-                kooji: { expense: 'koojiExpenseBody', income: 'koojiIncomeBody', refill: 'koojiRefillBody' },
-                hotpot: { expense: 'hotpotExpenseBody', income: 'hotpotIncomeBody', refill: 'hotpotRefillBody' }
+        function getListEl(shop, type) {
+            const map = {
+                kooji: { expense: 'koojiExpenseList', income: 'koojiIncomeList', refill: 'koojiRefillList' },
+                hotpot: { expense: 'hotpotExpenseList', income: 'hotpotIncomeList', refill: 'hotpotRefillList' }
             };
-            return document.getElementById(idMap[shop][type]);
+            return document.getElementById(map[shop][type]);
         }
 
-        function getSubtotalSpan(shop, type) {
-            const idMap = {
+        function getSubtotalEl(shop, type) {
+            const map = {
                 kooji: { expense: 'koojiExpenseSubtotal', income: 'koojiIncomeSubtotal',
                 refill: 'koojiRefillSubtotal' },
                 hotpot: { expense: 'hotpotExpenseSubtotal', income: 'hotpotIncomeSubtotal',
                 refill: 'hotpotRefillSubtotal' }
             };
-            return document.getElementById(idMap[shop][type]);
+            return document.getElementById(map[shop][type]);
         }
 
-        // ==================== ROW TEMPLATES ====================
-        function createExpenseRow(shop, index, data = {}) {
-            const catOptions = EXPENSE_CATEGORIES.map(c =>
-                `<option value="${c}" ${data.category === c ? 'selected' : ''}>${c}</option>`
-            ).join('');
-            return `
-            <tr>
-              <td>${index + 1}</td>
-              <td><select onchange="recalcAll()" data-field="category">${catOptions}</select></td>
-              <td><input type="text" value="${data.item || ''}" data-field="item" oninput="recalcAll()"></td>
-              <td><input type="text" value="${data.unit || ''}" data-field="unit" oninput="recalcAll()" style="width:70px;"></td>
-              <td><input type="number" value="${data.qty || ''}" data-field="qty" step="any" min="0" oninput="recalcAll()"></td>
-              <td><input type="number" value="${data.unitPrice || ''}" data-field="unitPrice" step="any" min="0" oninput="recalcAll()"></td>
-              <td class="total-cell">${(data.total || 0).toFixed(2)}</td>
-              <td><button class="delete-row-btn" onclick="deleteRow(this, '${shop}', 'expense')" title="Remove">✕</button></td>
-            </tr>`;
-        }
-
-        function createIncomeRow(shop, index, data = {}) {
-            return `
-            <tr>
-              <td>${index + 1}</td>
-              <td><input type="text" value="${data.item || ''}" data-field="item" oninput="recalcAll()"></td>
-              <td><input type="text" value="${data.unit || ''}" data-field="unit" oninput="recalcAll()" style="width:70px;"></td>
-              <td><input type="number" value="${data.qty || ''}" data-field="qty" step="any" min="0" oninput="recalcAll()"></td>
-              <td><input type="number" value="${data.unitPrice || ''}" data-field="unitPrice" step="any" min="0" oninput="recalcAll()"></td>
-              <td class="total-cell">${(data.total || 0).toFixed(2)}</td>
-              <td><button class="delete-row-btn" onclick="deleteRow(this, '${shop}', 'income')" title="Remove">✕</button></td>
-            </tr>`;
-        }
-
-        function createRefillRow(shop, index, data = {}) {
-            return `
-            <tr>
-              <td>${index + 1}</td>
-              <td><input type="text" value="${data.item || ''}" data-field="item" oninput="recalcAll()"></td>
-              <td><input type="text" value="${data.unit || ''}" data-field="unit" oninput="recalcAll()" style="width:70px;"></td>
-              <td><input type="number" value="${data.qty || ''}" data-field="qty" step="any" min="0" oninput="recalcAll()"></td>
-              <td><input type="number" value="${data.unitPrice || ''}" data-field="unitPrice" step="any" min="0" oninput="recalcAll()"></td>
-              <td class="total-cell">${(data.total || 0).toFixed(2)}</td>
-              <td><button class="delete-row-btn" onclick="deleteRow(this, '${shop}', 'refill')" title="Remove">✕</button></td>
-            </tr>`;
-        }
-
-        // ==================== RENDER ====================
-        function renderTable(shop, type) {
-            const body = getBody(shop, type);
+        function renderList(shop, type) {
+            const el = getListEl(shop, type);
             const rows = reportData[shop][type];
             let html = '';
             rows.forEach((row, i) => {
-                if (type === 'expense') html += createExpenseRow(shop, i, row);
-                else if (type === 'income') html += createIncomeRow(shop, i, row);
-                else html += createRefillRow(shop, i, row);
+                html += createRowItem(shop, type, i, row);
             });
-            body.innerHTML = html;
+            el.innerHTML = html;
             recalcAll();
         }
 
+        function createRowItem(shop, type, index, data) {
+            if (type === 'expense') return createExpenseItem(shop, index, data);
+            if (type === 'income') return createIncomeItem(shop, index, data);
+            return createRefillItem(shop, index, data);
+        }
+
+        function createExpenseItem(shop, index, data) {
+            const catOptions = EXPENSE_CATEGORIES.map(c =>
+                `<option value="${c}" ${data.category === c ? 'selected' : ''}>${c}</option>`).join('');
+            return `
+            <div class="row-item">
+              <div class="row-header">
+                <span class="row-number">#${index + 1}</span>
+                <button class="delete-btn" onclick="deleteRow('${shop}','expense',${index})">✕</button>
+              </div>
+              <div class="field-group">
+                <label>Category</label>
+                <select data-field="category" onchange="recalcAll()">${catOptions}</select>
+              </div>
+              <div class="field-group">
+                <label>Item</label>
+                <input type="text" value="${data.item || ''}" data-field="item" oninput="recalcAll()" placeholder="Item name">
+              </div>
+              <div class="two-col">
+                <div class="field-group">
+                  <label>Unit</label>
+                  <input type="text" value="${data.unit || ''}" data-field="unit" oninput="recalcAll()" placeholder="kg/pc">
+                </div>
+                <div class="field-group">
+                  <label>Qty</label>
+                  <input type="number" value="${data.qty || ''}" data-field="qty" step="any" min="0" oninput="recalcAll()" placeholder="0">
+                </div>
+              </div>
+              <div class="field-group">
+                <label>Price</label>
+                <input type="number" value="${data.unitPrice || ''}" data-field="unitPrice" step="any" min="0" oninput="recalcAll()" placeholder="0.00">
+              </div>
+              <div class="row-total">Total: <span>$${(data.total || 0).toFixed(2)}</span></div>
+            </div>`;
+        }
+
+        function createIncomeItem(shop, index, data) {
+            return `
+            <div class="row-item">
+              <div class="row-header">
+                <span class="row-number">#${index + 1}</span>
+                <button class="delete-btn" onclick="deleteRow('${shop}','income',${index})">✕</button>
+              </div>
+              <div class="field-group">
+                <label>Item</label>
+                <input type="text" value="${data.item || ''}" data-field="item" oninput="recalcAll()" placeholder="Description">
+              </div>
+              <div class="two-col">
+                <div class="field-group">
+                  <label>Unit</label>
+                  <input type="text" value="${data.unit || ''}" data-field="unit" oninput="recalcAll()" placeholder="cup/pc">
+                </div>
+                <div class="field-group">
+                  <label>Qty</label>
+                  <input type="number" value="${data.qty || ''}" data-field="qty" step="any" min="0" oninput="recalcAll()" placeholder="0">
+                </div>
+              </div>
+              <div class="field-group">
+                <label>Price</label>
+                <input type="number" value="${data.unitPrice || ''}" data-field="unitPrice" step="any" min="0" oninput="recalcAll()" placeholder="0.00">
+              </div>
+              <div class="row-total">Amount: <span>$${(data.total || 0).toFixed(2)}</span></div>
+            </div>`;
+        }
+
+        function createRefillItem(shop, index, data) {
+            return `
+            <div class="row-item">
+              <div class="row-header">
+                <span class="row-number">#${index + 1}</span>
+                <button class="delete-btn" onclick="deleteRow('${shop}','refill',${index})">✕</button>
+              </div>
+              <div class="field-group">
+                <label>Item</label>
+                <input type="text" value="${data.item || ''}" data-field="item" oninput="recalcAll()" placeholder="Item name">
+              </div>
+              <div class="two-col">
+                <div class="field-group">
+                  <label>Unit</label>
+                  <input type="text" value="${data.unit || ''}" data-field="unit" oninput="recalcAll()" placeholder="kg/pc">
+                </div>
+                <div class="field-group">
+                  <label>Qty</label>
+                  <input type="number" value="${data.qty || ''}" data-field="qty" step="any" min="0" oninput="recalcAll()" placeholder="0">
+                </div>
+              </div>
+              <div class="field-group">
+                <label>Est. Price</label>
+                <input type="number" value="${data.unitPrice || ''}" data-field="unitPrice" step="any" min="0" oninput="recalcAll()" placeholder="0.00">
+              </div>
+              <div class="row-total">Total: <span>$${(data.total || 0).toFixed(2)}</span></div>
+            </div>`;
+        }
+
         function addRow(shop, type) {
-            reportData[shop][type].push({ item: '', unit: '', qty: '', unitPrice: '', total: 0, category: type ===
-                    'expense' ? EXPENSE_CATEGORIES[0] : undefined });
-            renderTable(shop, type);
+            reportData[shop][type].push({
+                item: '',
+                unit: '',
+                qty: '',
+                unitPrice: '',
+                total: 0,
+                category: type === 'expense' ? EXPENSE_CATEGORIES[0] : undefined
+            });
+            renderList(shop, type);
         }
 
-        function deleteRow(btn, shop, type) {
-            const row = btn.closest('tr');
-            const tbody = getBody(shop, type);
-            const index = Array.from(tbody.children).indexOf(row);
-            if (index >= 0) {
-                reportData[shop][type].splice(index, 1);
-                renderTable(shop, type);
-            }
+        function deleteRow(shop, type, index) {
+            reportData[shop][type].splice(index, 1);
+            renderList(shop, type);
         }
 
-        // ==================== CALCULATIONS ====================
         function recalcAll() {
             ['kooji', 'hotpot'].forEach(shop => {
                 ['expense', 'income', 'refill'].forEach(type => {
-                    recalcTable(shop, type);
+                    recalcList(shop, type);
                 });
             });
-            updateAllSummaries();
-            updateCombinedSummary();
+            updateSummaries();
+            updateCombined();
         }
 
-        function recalcTable(shop, type) {
-            const body = getBody(shop, type);
-            if (!body) return;
-            const rows = body.querySelectorAll('tr');
+        function recalcList(shop, type) {
+            const el = getListEl(shop, type);
+            if (!el) return;
+            const items = el.querySelectorAll('.row-item');
             let subtotal = 0;
-            rows.forEach((row, i) => {
-                const qtyInput = row.querySelector('[data-field="qty"]');
-                const priceInput = row.querySelector('[data-field="unitPrice"]');
-                const totalCell = row.querySelector('.total-cell');
+            items.forEach((item, i) => {
+                const qtyInput = item.querySelector('[data-field="qty"]');
+                const priceInput = item.querySelector('[data-field="unitPrice"]');
+                const totalSpan = item.querySelector('.row-total span');
                 const qty = parseFloat(qtyInput?.value) || 0;
                 const price = parseFloat(priceInput?.value) || 0;
                 const total = qty * price;
-                if (totalCell) totalCell.textContent = total.toFixed(2);
+                if (totalSpan) totalSpan.textContent = '$' + total.toFixed(2);
                 subtotal += total;
-                // Update data
                 if (reportData[shop][type][i]) {
                     reportData[shop][type][i].qty = qtyInput?.value || '';
                     reportData[shop][type][i].unitPrice = priceInput?.value || '';
                     reportData[shop][type][i].total = total;
-                    const itemInput = row.querySelector('[data-field="item"]');
-                    const unitInput = row.querySelector('[data-field="unit"]');
+                    const itemInput = item.querySelector('[data-field="item"]');
+                    const unitInput = item.querySelector('[data-field="unit"]');
                     if (itemInput) reportData[shop][type][i].item = itemInput.value;
                     if (unitInput) reportData[shop][type][i].unit = unitInput.value;
                     if (type === 'expense') {
-                        const catSelect = row.querySelector('[data-field="category"]');
-                        if (catSelect) reportData[shop][type][i].category = catSelect.value;
+                        const catSel = item.querySelector('[data-field="category"]');
+                        if (catSel) reportData[shop][type][i].category = catSel.value;
                     }
                 }
             });
-            const span = getSubtotalSpan(shop, type);
+            const span = getSubtotalEl(shop, type);
             if (span) span.textContent = subtotal.toFixed(2);
         }
 
         function getSubtotal(shop, type) {
-            return reportData[shop][type].reduce((sum, r) => sum + (parseFloat(r.total) || 0), 0);
+            return reportData[shop][type].reduce((s, r) => s + (parseFloat(r.total) || 0), 0);
         }
 
-        function updateAllSummaries() {
+        function updateSummaries() {
             ['kooji', 'hotpot'].forEach(shop => {
-                const income = getSubtotal(shop, 'income');
-                const expense = getSubtotal(shop, 'expense');
-                const refill = getSubtotal(shop, 'refill');
-                const net = income - expense - refill;
-
-                const netIncomeEl = document.getElementById(`${shop}NetIncome`);
-                const netExpenseEl = document.getElementById(`${shop}NetExpense`);
-                const netRefillEl = document.getElementById(`${shop}NetRefill`);
-                const netTotalEl = document.getElementById(`${shop}NetTotal`);
-
-                if (netIncomeEl) netIncomeEl.textContent = income.toFixed(2);
-                if (netExpenseEl) netExpenseEl.textContent = expense.toFixed(2);
-                if (netRefillEl) netRefillEl.textContent = refill.toFixed(2);
-                if (netTotalEl) {
-                    netTotalEl.textContent = net.toFixed(2);
-                    netTotalEl.style.color = net < 0 ? 'var(--danger)' : 'var(--success)';
-                }
+                const inc = getSubtotal(shop, 'income');
+                const exp = getSubtotal(shop, 'expense');
+                const ref = getSubtotal(shop, 'refill');
+                const net = inc - exp - ref;
+                document.getElementById(`${shop}NetIncome`).textContent = inc.toFixed(2);
+                document.getElementById(`${shop}NetExpense`).textContent = exp.toFixed(2);
+                document.getElementById(`${shop}NetRefill`).textContent = ref.toFixed(2);
+                const netEl = document.getElementById(`${shop}NetTotal`);
+                netEl.textContent = '$' + net.toFixed(2);
+                netEl.style.color = net < 0 ? 'var(--danger)' : 'var(--success)';
             });
         }
 
-        function updateCombinedSummary() {
-            const kIncome = getSubtotal('kooji', 'income');
-            const kExpense = getSubtotal('kooji', 'expense');
-            const kRefill = getSubtotal('kooji', 'refill');
-            const kNet = kIncome - kExpense - kRefill;
+        function updateCombined() {
+            const ki = getSubtotal('kooji', 'income'),
+                ke = getSubtotal('kooji', 'expense'),
+                kr = getSubtotal('kooji', 'refill'),
+                kn = ki - ke - kr;
+            const hi = getSubtotal('hotpot', 'income'),
+                he = getSubtotal('hotpot', 'expense'),
+                hr = getSubtotal('hotpot', 'refill'),
+                hn = hi - he - hr;
 
-            const hIncome = getSubtotal('hotpot', 'income');
-            const hExpense = getSubtotal('hotpot', 'expense');
-            const hRefill = getSubtotal('hotpot', 'refill');
-            const hNet = hIncome - hExpense - hRefill;
+            document.getElementById('combinedKoojiIncome').textContent = '$' + ki.toFixed(2);
+            document.getElementById('combinedKoojiExpense').textContent = '$' + ke.toFixed(2);
+            document.getElementById('combinedKoojiRefill').textContent = '$' + kr.toFixed(2);
+            const ckn = document.getElementById('combinedKoojiNet');
+            ckn.textContent = '$' + kn.toFixed(2);
+            ckn.className = 'sg-value sg-net' + (kn < 0 ? ' negative' : '');
 
-            document.getElementById('combinedKoojiIncome').textContent = '$' + kIncome.toFixed(2);
-            document.getElementById('combinedKoojiExpense').textContent = '$' + kExpense.toFixed(2);
-            document.getElementById('combinedKoojiRefill').textContent = '$' + kRefill.toFixed(2);
-            document.getElementById('combinedKoojiNet').textContent = '$' + kNet.toFixed(2);
-            document.getElementById('combinedKoojiNet').style.color = kNet < 0 ? 'var(--danger)' : 'var(--success)';
+            document.getElementById('combinedHotpotIncome').textContent = '$' + hi.toFixed(2);
+            document.getElementById('combinedHotpotExpense').textContent = '$' + he.toFixed(2);
+            document.getElementById('combinedHotpotRefill').textContent = '$' + hr.toFixed(2);
+            const chn = document.getElementById('combinedHotpotNet');
+            chn.textContent = '$' + hn.toFixed(2);
+            chn.className = 'sg-value sg-net' + (hn < 0 ? ' negative' : '');
 
-            document.getElementById('combinedHotpotIncome').textContent = '$' + hIncome.toFixed(2);
-            document.getElementById('combinedHotpotExpense').textContent = '$' + hExpense.toFixed(2);
-            document.getElementById('combinedHotpotRefill').textContent = '$' + hRefill.toFixed(2);
-            document.getElementById('combinedHotpotNet').textContent = '$' + hNet.toFixed(2);
-            document.getElementById('combinedHotpotNet').style.color = hNet < 0 ? 'var(--danger)' : 'var(--success)';
-
-            document.getElementById('combinedTotalIncome').textContent = '$' + (kIncome + hIncome).toFixed(2);
-            document.getElementById('combinedTotalExpense').textContent = '$' + (kExpense + hExpense).toFixed(2);
-            document.getElementById('combinedTotalRefill').textContent = '$' + (kRefill + hRefill).toFixed(2);
-            const grandNet = kNet + hNet;
-            const grandNetEl = document.getElementById('combinedGrandNet');
-            grandNetEl.textContent = '$' + grandNet.toFixed(2);
-            grandNetEl.style.color = grandNet < 0 ? 'var(--danger)' : 'var(--success)';
+            const grand = kn + hn;
+            const gEl = document.getElementById('combinedGrandNet');
+            gEl.textContent = '$' + grand.toFixed(2);
+            gEl.style.color = grand < 0 ? 'var(--danger)' : 'var(--success)';
         }
 
-        // ==================== TABS ====================
         function switchTab(tab) {
             currentTab = tab;
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
             document.getElementById('tab-' + tab).classList.add('active');
-            document.querySelector(`.tab-btn${tab === 'kooji' ? ':first-child' : ':last-child'}`).classList.add(
-            'active');
-            // Update active tab button more reliably
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons[tab === 'kooji' ? 0 : 1].classList.add('active');
+            document.querySelectorAll('.tab-btn')[tab === 'kooji' ? 0 : 1].classList.add('active');
             recalcAll();
         }
 
-        // ==================== SAVE / LOAD ====================
         function getStorageKey() {
             return `dailyReport_${reportDate}_${staffName}`;
         }
+
         // ==================== TELEGRAM SENDER ====================
-async function sendToTelegram(reportText) {
-    if (!TELEGRAM_ENABLED) {
-        console.log('Telegram sending disabled.');
-        return false;
-    }
-    const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`;
-    try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                chat_id: TELEGRAM_CHAT_ID,
-                text: reportText,
-                parse_mode: 'HTML',
-                disable_web_page_preview: true
-            })
-        });
-        const data = await response.json();
-        if (data.ok) {
-            console.log('✅ Telegram sent successfully');
-            return true;
-        } else {
-            console.error('Telegram error:', data.description);
-            return false;
-        }
-    } catch (error) {
-        console.error('Telegram fetch error:', error);
-        return false;
-    }
-}
-
-function buildTelegramMessage() {
-    const kIncome = getSubtotal('kooji', 'income');
-    const kExpense = getSubtotal('kooji', 'expense');
-    const kRefill = getSubtotal('kooji', 'refill');
-    const kNet = kIncome - kExpense - kRefill;
-    const hIncome = getSubtotal('hotpot', 'income');
-    const hExpense = getSubtotal('hotpot', 'expense');
-    const hRefill = getSubtotal('hotpot', 'refill');
-    const hNet = hIncome - hExpense - hRefill;
-    const grandTotal = kNet + hNet;
-
-    let msg = `<b>📊 Daily Report</b>\n`;
-    msg += `<b>📅 Date:</b> ${reportDate}\n`;
-    msg += `<b>👤 Staff:</b> ${staffName}\n`;
-    msg += `\n━━━━━━━━━━━━━━━━\n`;
-    msg += `<b>☕ KOOJI Cafe</b>\n`;
-    msg += `💰 Income: <b>$${kIncome.toFixed(2)}</b>\n`;
-    msg += `💸 Expense: <b>$${kExpense.toFixed(2)}</b>\n`;
-    msg += `📋 Refill Budget: <b>$${kRefill.toFixed(2)}</b>\n`;
-    msg += `📌 Net: <b>$${kNet.toFixed(2)}</b>\n`;
-    msg += `\n<b>🍲 HOTPOT</b>\n`;
-    msg += `💰 Income: <b>$${hIncome.toFixed(2)}</b>\n`;
-    msg += `💸 Expense: <b>$${hExpense.toFixed(2)}</b>\n`;
-    msg += `📋 Refill Budget: <b>$${hRefill.toFixed(2)}</b>\n`;
-    msg += `📌 Net: <b>$${hNet.toFixed(2)}</b>\n`;
-    msg += `\n━━━━━━━━━━━━━━━━\n`;
-    msg += `🔷 <b>Grand Total Net: $${grandTotal.toFixed(2)}</b>\n`;
-
-    // Add expense details
-    msg += `\n<b>💸 KOOJI Expenses:</b>\n`;
-    const kExpenses = reportData.kooji.expense;
-    if (kExpenses.length === 0) {
-        msg += `  (none)\n`;
-    } else {
-        kExpenses.forEach((row, i) => {
-            msg += `  ${i+1}. ${row.item || '—'} | ${row.category || ''} | $${(parseFloat(row.total)||0).toFixed(2)}\n`;
-        });
-    }
-
-    msg += `\n<b>💸 HOTPOT Expenses:</b>\n`;
-    const hExpenses = reportData.hotpot.expense;
-    if (hExpenses.length === 0) {
-        msg += `  (none)\n`;
-    } else {
-        hExpenses.forEach((row, i) => {
-            msg += `  ${i+1}. ${row.item || '—'} | ${row.category || ''} | $${(parseFloat(row.total)||0).toFixed(2)}\n`;
-        });
-    }
-
-    // Add refill items
-    msg += `\n<b>📋 KOOJI Refill List:</b>\n`;
-    const kRefills = reportData.kooji.refill;
-    if (kRefills.length === 0) {
-        msg += `  (none)\n`;
-    } else {
-        kRefills.forEach((row, i) => {
-            msg += `  ${i+1}. ${row.item || '—'} | ${row.qty || 0} ${row.unit || ''} | Est. $${(parseFloat(row.total)||0).toFixed(2)}\n`;
-        });
-    }
-
-    msg += `\n<b>📋 HOTPOT Refill List:</b>\n`;
-    const hRefills = reportData.hotpot.refill;
-    if (hRefills.length === 0) {
-        msg += `  (none)\n`;
-    } else {
-        hRefills.forEach((row, i) => {
-            msg += `  ${i+1}. ${row.item || '—'} | ${row.qty || 0} ${row.unit || ''} | Est. $${(parseFloat(row.total)||0).toFixed(2)}\n`;
-        });
-    }
-
-    return msg;
-}
-async function sendReportToTelegram() {
-    if (!reportDate || !staffName) {
-        showToast('⚠️ Please login first.');
-        return;
-    }
-    recalcAll();
-    const msg = buildTelegramMessage();
-    const success = await sendToTelegram(msg);
-    if (success) {
-        showToast('📤 Report sent to Telegram!');
-    } else {
-        showToast('❌ Failed to send to Telegram');
-    }
-}
-function saveReport() {
-    if (!reportDate || !staffName) {
-        showToast('⚠️ Please login first.');
-        return;
-    }
-    recalcAll();
-    const key = getStorageKey();
-    const toSave = {
-        date: reportDate,
-        staff: staffName,
-        data: reportData
-    };
-    localStorage.setItem(key, JSON.stringify(toSave));
-
-    const indexKey = 'dailyReport_index';
-    let index = JSON.parse(localStorage.getItem(indexKey) || '[]');
-    if (!index.includes(key)) {
-        index.push(key);
-        localStorage.setItem(indexKey, JSON.stringify(index));
-    }
-
-    // Build and send Telegram message
-    const telegramMsg = buildTelegramMessage();
-    sendToTelegram(telegramMsg).then(success => {
-        if (success) {
-            showToast('✅ Saved & sent to Telegram!');
-        } else {
-            showToast('✅ Saved locally (Telegram failed)');
-        }
-    }).catch(() => {
-        showToast('✅ Saved locally (Telegram error)');
-    });
-}
-        function loadReport() {
-            const indexKey = 'dailyReport_index';
-            const index = JSON.parse(localStorage.getItem(indexKey) || '[]');
-            if (index.length === 0) {
-                showToast('ℹ️ No saved reports found.');
-                return;
+        async function sendToTelegram(reportText) {
+            if (!TELEGRAM_ENABLED) return false;
+            const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`;
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: reportText,
+                        parse_mode: 'HTML',
+                        disable_web_page_preview: true
+                    })
+                });
+                const data = await response.json();
+                return data.ok;
+            } catch (error) {
+                console.error('Telegram error:', error);
+                return false;
             }
-            // Build a simple modal-like prompt
+        }
+
+        function buildTelegramMessage() {
+            const ki = getSubtotal('kooji', 'income'),
+                ke = getSubtotal('kooji', 'expense'),
+                kr = getSubtotal('kooji', 'refill'),
+                kn = ki - ke - kr;
+            const hi = getSubtotal('hotpot', 'income'),
+                he = getSubtotal('hotpot', 'expense'),
+                hr = getSubtotal('hotpot', 'refill'),
+                hn = hi - he - hr;
+
+            let msg = `<b>📊 Daily Report</b>\n`;
+            msg += `<b>📅 Date:</b> ${reportDate}\n`;
+            msg += `<b>👤 Staff:</b> ${staffName}\n`;
+            msg += `\n━━━━━━━━━━━━━━━━\n`;
+            msg += `<b>☕ KOOJI Cafe</b>\n`;
+            msg += `💰 Income: <b>$${ki.toFixed(2)}</b>\n`;
+            msg += `💸 Expense: <b>$${ke.toFixed(2)}</b>\n`;
+            msg += `📋 Refill: <b>$${kr.toFixed(2)}</b>\n`;
+            msg += `📌 Net: <b>$${kn.toFixed(2)}</b>\n`;
+            msg += `\n<b>🍲 HOTPOT</b>\n`;
+            msg += `💰 Income: <b>$${hi.toFixed(2)}</b>\n`;
+            msg += `💸 Expense: <b>$${he.toFixed(2)}</b>\n`;
+            msg += `📋 Refill: <b>$${hr.toFixed(2)}</b>\n`;
+            msg += `📌 Net: <b>$${hn.toFixed(2)}</b>\n`;
+            msg += `\n━━━━━━━━━━━━━━━━\n`;
+            msg += `🔷 <b>Grand Total: $${(kn+hn).toFixed(2)}</b>\n`;
+
+            // KOOJI expenses detail
+            msg += `\n<b>💸 KOOJI Expenses:</b>\n`;
+            const kExp = reportData.kooji.expense;
+            if (kExp.length === 0) msg += `  (none)\n`;
+            else kExp.forEach((r, i) => msg += `  ${i+1}. ${r.item||'—'} | ${r.category||''} | $${(parseFloat(r.total)||0).toFixed(2)}\n`);
+
+            // HOTPOT expenses detail
+            msg += `\n<b>💸 HOTPOT Expenses:</b>\n`;
+            const hExp = reportData.hotpot.expense;
+            if (hExp.length === 0) msg += `  (none)\n`;
+            else hExp.forEach((r, i) => msg += `  ${i+1}. ${r.item||'—'} | ${r.category||''} | $${(parseFloat(r.total)||0).toFixed(2)}\n`);
+
+            // KOOJI refill
+            msg += `\n<b>📋 KOOJI Refill:</b>\n`;
+            const kRef = reportData.kooji.refill;
+            if (kRef.length === 0) msg += `  (none)\n`;
+            else kRef.forEach((r, i) => msg += `  ${i+1}. ${r.item||'—'} | ${r.qty||0} ${r.unit||''} | $${(parseFloat(r.total)||0).toFixed(2)}\n`);
+
+            // HOTPOT refill
+            msg += `\n<b>📋 HOTPOT Refill:</b>\n`;
+            const hRef = reportData.hotpot.refill;
+            if (hRef.length === 0) msg += `  (none)\n`;
+            else hRef.forEach((r, i) => msg += `  ${i+1}. ${r.item||'—'} | ${r.qty||0} ${r.unit||''} | $${(parseFloat(r.total)||0).toFixed(2)}\n`);
+
+            return msg;
+        }
+
+        async function sendReportToTelegram() {
+            if (!reportDate || !staffName) { showToast('⚠️ Please login first.'); return; }
+            recalcAll();
+            const success = await sendToTelegram(buildTelegramMessage());
+            showToast(success ? '📤 Sent to Telegram!' : '❌ Telegram failed');
+        }
+
+        function saveReport() {
+            if (!reportDate || !staffName) { showToast('⚠️ Please login first.'); return; }
+            recalcAll();
+            const key = getStorageKey();
+            localStorage.setItem(key, JSON.stringify({ date: reportDate, staff: staffName, data: reportData }));
+            const idxKey = 'dailyReport_index';
+            let idx = JSON.parse(localStorage.getItem(idxKey) || '[]');
+            if (!idx.includes(key)) { idx.push(key);
+                localStorage.setItem(idxKey, JSON.stringify(idx)); }
+            // Send to Telegram
+            sendToTelegram(buildTelegramMessage()).then(ok => {
+                showToast(ok ? '✅ Saved & sent to Telegram!' : '✅ Saved (Telegram failed)');
+            }).catch(() => showToast('✅ Saved (Telegram error)'));
+        }
+
+        function loadReport() {
+            const idx = JSON.parse(localStorage.getItem('dailyReport_index') || '[]');
+            if (!idx.length) { showToast('ℹ️ No saved reports.'); return; }
             let list = 'Saved Reports:\n';
-            index.forEach((key, i) => {
+            idx.forEach((k, i) => {
                 try {
-                    const saved = JSON.parse(localStorage.getItem(key));
-                    list +=
-                        `${i + 1}. 📅 ${saved.date} | 👤 ${saved.staff} | 🏷️ ${key.replace('dailyReport_', '')}\n`;
-                } catch (e) { /* skip corrupted */ }
+                    const s = JSON.parse(localStorage.getItem(k));
+                    list += `${i+1}. 📅 ${s.date} | 👤 ${s.staff}\n`;
+                } catch (e) {}
             });
-            const choice = prompt(list + '\nEnter the number to load (or Cancel):');
+            const choice = prompt(list + '\nEnter number to load:');
             if (choice && !isNaN(choice)) {
-                const idx = parseInt(choice) - 1;
-                if (idx >= 0 && idx < index.length) {
-                    const key = index[idx];
-                    const saved = JSON.parse(localStorage.getItem(key));
+                const i = parseInt(choice) - 1;
+                if (i >= 0 && i < idx.length) {
+                    const saved = JSON.parse(localStorage.getItem(idx[i]));
                     if (saved) {
                         reportData = saved.data;
                         reportDate = saved.date;
                         staffName = saved.staff;
                         document.getElementById('displayDate').textContent = reportDate;
                         document.getElementById('displayStaff').textContent = staffName;
-                        document.getElementById('reportDateInput').value = reportDate;
-                        document.getElementById('staffNameInput').value = staffName;
-                        renderTable('kooji', 'expense');
-                        renderTable('kooji', 'income');
-                        renderTable('kooji', 'refill');
-                        renderTable('hotpot', 'expense');
-                        renderTable('hotpot', 'income');
-                        renderTable('hotpot', 'refill');
-                        recalcAll();
+                        renderAll();
                         showToast('📂 Report loaded!');
                     }
                 }
@@ -1148,18 +1034,12 @@ function saveReport() {
         }
 
         function newReport() {
-            if (confirm('Are you sure you want to clear everything and start a new report? Unsaved changes will be lost.')) {
+            if (confirm('Clear all and start new? Unsaved changes will be lost.')) {
                 reportData = {
                     kooji: { expense: [], income: [], refill: [] },
                     hotpot: { expense: [], income: [], refill: [] }
                 };
-                renderTable('kooji', 'expense');
-                renderTable('kooji', 'income');
-                renderTable('kooji', 'refill');
-                renderTable('hotpot', 'expense');
-                renderTable('hotpot', 'income');
-                renderTable('hotpot', 'refill');
-                recalcAll();
+                renderAll();
                 showToast('🆕 New report started.');
             }
         }
@@ -1170,105 +1050,75 @@ function saveReport() {
         }
 
         function logout() {
-            if (confirm('Logout? Any unsaved data will be lost.')) {
+            if (confirm('Logout? Unsaved data will be lost.')) {
                 document.getElementById('appContainer').style.display = 'none';
+                document.getElementById('bottomBar').style.display = 'none';
                 document.getElementById('loginOverlay').classList.remove('hidden');
                 staffName = '';
                 reportDate = '';
-                reportData = {
-                    kooji: { expense: [], income: [], refill: [] },
-                    hotpot: { expense: [], income: [], refill: [] }
-                };
+                reportData = { kooji: { expense: [], income: [], refill: [] }, hotpot: { expense: [], income: [],
+                        refill: [] } };
             }
         }
 
-        // ==================== LOGIN ====================
+        function renderAll() {
+            renderList('kooji', 'expense');
+            renderList('kooji', 'income');
+            renderList('kooji', 'refill');
+            renderList('hotpot', 'expense');
+            renderList('hotpot', 'income');
+            renderList('hotpot', 'refill');
+            recalcAll();
+        }
+
         function login() {
-            const nameInput = document.getElementById('staffNameInput');
-            const dateInput = document.getElementById('reportDateInput');
-            const name = nameInput.value.trim();
-            const date = dateInput.value;
-            if (!name) {
-                showToast('⚠️ Please enter your name.');
-                nameInput.focus();
-                return;
-            }
-            if (!date) {
-                showToast('⚠️ Please select a date.');
-                dateInput.focus();
-                return;
-            }
+            const name = document.getElementById('staffNameInput').value.trim();
+            const date = document.getElementById('reportDateInput').value;
+            if (!name) { showToast('⚠️ Enter your name.');
+                document.getElementById('staffNameInput').focus(); return; }
+            if (!date) { showToast('⚠️ Select a date.');
+                document.getElementById('reportDateInput').focus(); return; }
             staffName = name;
             reportDate = date;
             document.getElementById('displayDate').textContent = reportDate;
             document.getElementById('displayStaff').textContent = staffName;
             document.getElementById('loginOverlay').classList.add('hidden');
             document.getElementById('appContainer').style.display = 'block';
+            document.getElementById('bottomBar').style.display = 'flex';
 
-            // Check if a saved report exists for this date+staff
             const key = getStorageKey();
             const saved = localStorage.getItem(key);
             if (saved) {
-                if (confirm(
-                        `A saved report for ${reportDate} by ${staffName} exists. Load it? Click Cancel to start fresh.`
-                        )) {
-                    const parsed = JSON.parse(saved);
-                    reportData = parsed.data;
+                if (confirm(`Load saved report for ${reportDate} by ${staffName}?`)) {
+                    reportData = JSON.parse(saved).data;
                 } else {
-                    reportData = {
-                        kooji: { expense: [], income: [], refill: [] },
-                        hotpot: { expense: [], income: [], refill: [] }
-                    };
+                    reportData = { kooji: { expense: [], income: [], refill: [] }, hotpot: { expense: [], income: [],
+                            refill: [] } };
                 }
             } else {
-                reportData = {
-                    kooji: { expense: [], income: [], refill: [] },
-                    hotpot: { expense: [], income: [], refill: [] }
-                };
+                reportData = { kooji: { expense: [], income: [], refill: [] }, hotpot: { expense: [], income: [],
+                        refill: [] } };
             }
-
-            renderTable('kooji', 'expense');
-            renderTable('kooji', 'income');
-            renderTable('kooji', 'refill');
-            renderTable('hotpot', 'expense');
-            renderTable('hotpot', 'income');
-            renderTable('hotpot', 'refill');
-            recalcAll();
+            renderAll();
             showToast(`👋 Welcome, ${staffName}!`);
         }
 
-        // ==================== TOAST ====================
         function showToast(msg) {
-            const toast = document.getElementById('toast');
-            toast.textContent = msg;
-            toast.classList.add('show');
-            clearTimeout(toast._timeout);
-            toast._timeout = setTimeout(() => toast.classList.remove('show'), 2500);
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            clearTimeout(t._t);
+            t._t = setTimeout(() => t.classList.remove('show'), 2500);
         }
 
-        // ==================== INIT ====================
         function init() {
-            // Set today's date as default
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('reportDateInput').value = today;
-
-            // Handle Enter key on login
-            document.getElementById('staffNameInput').addEventListener('keydown', function(e) {
-                if (e.key === 'Enter') login();
-            });
-            document.getElementById('reportDateInput').addEventListener('keydown', function(e) {
-                if (e.key === 'Enter') login();
-            });
-
-            // Initial render of empty tables
-            renderTable('kooji', 'expense');
-            renderTable('kooji', 'income');
-            renderTable('kooji', 'refill');
-            renderTable('hotpot', 'expense');
-            renderTable('hotpot', 'income');
-            renderTable('hotpot', 'refill');
+            document.getElementById('reportDateInput').value = new Date().toISOString().split('T')[0];
+            document.getElementById('staffNameInput').addEventListener('keydown', e => { if (e.key === 'Enter')
+            login(); });
+            document.getElementById('reportDateInput').addEventListener('keydown', e => { if (e.key === 'Enter')
+            login(); });
+            renderAll();
         }
-
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
